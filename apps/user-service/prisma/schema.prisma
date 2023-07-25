@@ -1,0 +1,16 @@
+datasource mongo {
+  provider = "mongodb"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model UserCollection {
+  createdAt DateTime @default(now())
+  email     String?
+  id        String   @id @default(auto()) @map("_id") @mongo.ObjectId
+  name      String
+  updatedAt DateTime @updatedAt
+}
